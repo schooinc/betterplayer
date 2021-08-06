@@ -543,8 +543,8 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
         result([FlutterError errorWithCode:@"unsupported_speed"
                                    message:@"Speed must be >= 0.0 and <= 2.0"
                                    details:nil]);
-    } else if ((speed > 1.0 && _player.currentItem.canPlayFastForward) ||
-               (speed < 1.0 && _player.currentItem.canPlaySlowForward)) {
+    } else if ((speed > 1.0) || (speed < 1.0)) {
+        // https://github.com/flutter/plugins/blob/3f94042/packages/video_player/video_player/ios/Classes/FLTVideoPlayerPlugin.m#L377
         _playerRate = speed;
         result(nil);
     } else {
