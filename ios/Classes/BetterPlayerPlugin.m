@@ -357,8 +357,9 @@ int texturesCount = -1;
         } else if ([@"absolutePosition" isEqualToString:call.method]) {
             result(@([player absolutePosition]));
         } else if ([@"seekTo" isEqualToString:call.method]) {
-            [player seekTo:[argsMap[@"location"] intValue]];
-            result(nil);
+            [player seekTo:[argsMap[@"location"] intValue] completion:^(BOOL finished) {
+                result(nil);
+            }];
         } else if ([@"pause" isEqualToString:call.method]) {
             [player pause];
             result(nil);

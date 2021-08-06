@@ -511,10 +511,14 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
 }
 
 - (void)seekTo:(int)location {
+    [self seekTo:location completion:nil];
+}
+
+- (void)seekTo:(int)location completion:(void (^)(BOOL finished))completion {
     ///When player is playing, pause video, seek to new position and start again. This will prevent issues with seekbar jumps.
     bool wasPlaying = _isPlaying;
     if (wasPlaying){
-        [_player pause];
+        [self pause];
     }
     
     [_player seekToTime:CMTimeMake(location, 1000)
@@ -523,6 +527,9 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
       completionHandler:^(BOOL finished){
         if (wasPlaying){
             _player.rate = _playerRate;
+        }
+        if (completion != nil) {
+            completion(finished);
         }
     }];
 }

@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithFrame:(CGRect)frame;
 - (void)setMixWithOthers:(bool)mixWithOthers;
 - (void)seekTo:(int)location;
+- (void)seekTo:(int)location completion:(void (^)(BOOL finished))completion;
 - (void)setDataSourceAsset:(NSString*)asset withKey:(NSString*)key withCertificateUrl:(NSString*)certificateUrl overriddenDuration:(int) overriddenDuration;
 - (void)setDataSourceURL:(NSURL*)url withKey:(NSString*)key withCertificateUrl:(NSString*)certificateUrl withHeaders:(NSDictionary*)headers withCache:(BOOL)useCache overriddenDuration:(int) overriddenDuration;
 - (void)setVolume:(double)volume;
