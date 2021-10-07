@@ -112,6 +112,14 @@ class BetterPlayerConfiguration {
   ///Default value is true.
   final bool autoDispose;
 
+  ///Flag which causes to player expand to fill all remaining space. Set to false
+  ///to use minimum constraints
+  final bool expandToFill;
+
+  ///Flag which causes to player use the root navigator to open new pages.
+  ///Default value is false.
+  final bool useRootNavigator;
+
   const BetterPlayerConfiguration({
     this.aspectRatio,
     this.autoPlay = false,
@@ -147,6 +155,8 @@ class BetterPlayerConfiguration {
     this.autoDetectFullscreenDeviceOrientation = false,
     this.handleLifecycle = true,
     this.autoDispose = true,
+    this.expandToFill = true,
+    this.useRootNavigator = false,
   });
 
   BetterPlayerConfiguration copyWith({
@@ -175,6 +185,10 @@ class BetterPlayerConfiguration {
     Function(double visibilityFraction)? playerVisibilityChangedBehavior,
     List<BetterPlayerTranslations>? translations,
     bool? autoDetectFullscreenDeviceOrientation,
+    bool? handleLifecycle,
+    bool? autoDispose,
+    bool? expandToFill,
+    bool? useRootNavigator,
   }) {
     return BetterPlayerConfiguration(
       aspectRatio: aspectRatio ?? this.aspectRatio,
@@ -211,6 +225,10 @@ class BetterPlayerConfiguration {
       autoDetectFullscreenDeviceOrientation:
           autoDetectFullscreenDeviceOrientation ??
               this.autoDetectFullscreenDeviceOrientation,
+      handleLifecycle: handleLifecycle ?? this.handleLifecycle,
+      autoDispose: autoDispose ?? this.autoDispose,
+      expandToFill: expandToFill ?? this.expandToFill,
+      useRootNavigator: useRootNavigator ?? this.useRootNavigator,
     );
   }
 }

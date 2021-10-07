@@ -1,3 +1,30 @@
+## 0.0.76
+* Fixed iOS build issue.
+* [BREAKING_CHANGE] Changed min required iOS version to 11.
+* Updated `BetterPlayerConfiguration` `copyWith` method.
+* Added `useRootNavigator` option to `BetterPlayerConfiguration`.
+
+## 0.0.75
+* Fixed iOS build issue.
+
+## 0.0.74
+* [BREAKING_CHANGE] `nextVideoTimeStreamController` is now marked as private. Please use `nextVideoTimeStream` to access stream.
+* [BREAKING_CHANGE] Removed BackdropFilter from cupertino theme.
+* [BREAKING_CHANGE] Removed `sigmaX` and `sigmaY` parameters from BetterPlayerControlsConfiguration.
+* Added `expandToFill` in `BetterPlayerConfiguration`.
+* Added `BetterPlayerControlsConfiguration.theme` factory for `BetterPlayerControlsConfiguration`.
+* Added null checks in seek commands in `BetterPlayerControlsState`.
+* Added tests.
+* Added iOS HLS caching based on HLSCachingReverseProxyServer.
+* Added default subtitle support for ASMS HLS data source (by https://github.com/siloebb).
+* Fixed issue with live stream where player controls were always visible.
+* Fixed iOS seek issue.
+* Fixed getting started button link in documentation.
+* Changed iOS non-HLS caching implementation based on https://github.com/neekeetab/CachingPlayerItem (by https://github.com/themadmrj).
+* Fixed hardcoded 30 FPS on iOS (by https://github.com/antonkrasov).
+* Enabled `preCache` and `stopPreCache` for iOS.
+* Updated dependencies.
+
 ## 0.0.73
 * Added `licenseUrl` support for iOS DRM.
 * Fixed RTL text direction issue in player controls.

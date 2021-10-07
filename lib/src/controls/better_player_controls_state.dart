@@ -38,26 +38,30 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
   }
 
   void skipBack() {
-    cancelAndRestartTimer();
-    final beginning = const Duration().inMilliseconds;
-    final skip = (latestValue!.position -
-            Duration(
-                milliseconds: betterPlayerControlsConfiguration
-                    .backwardSkipTimeInMilliseconds))
-        .inMilliseconds;
-    betterPlayerController!
-        .seekTo(Duration(milliseconds: max(skip, beginning)));
+    if (latestValue != null) {
+      cancelAndRestartTimer();
+      final beginning = const Duration().inMilliseconds;
+      final skip = (latestValue!.position -
+              Duration(
+                  milliseconds: betterPlayerControlsConfiguration
+                      .backwardSkipTimeInMilliseconds))
+          .inMilliseconds;
+      betterPlayerController!
+          .seekTo(Duration(milliseconds: max(skip, beginning)));
+    }
   }
 
   void skipForward() {
-    cancelAndRestartTimer();
-    final end = latestValue!.duration!.inMilliseconds;
-    final skip = (latestValue!.position +
-            Duration(
-                milliseconds: betterPlayerControlsConfiguration
-                    .forwardSkipTimeInMilliseconds))
-        .inMilliseconds;
-    betterPlayerController!.seekTo(Duration(milliseconds: min(skip, end)));
+    if (latestValue != null) {
+      cancelAndRestartTimer();
+      final end = latestValue!.duration!.inMilliseconds;
+      final skip = (latestValue!.position +
+              Duration(
+                  milliseconds: betterPlayerControlsConfiguration
+                      .forwardSkipTimeInMilliseconds))
+          .inMilliseconds;
+      betterPlayerController!.seekTo(Duration(milliseconds: min(skip, end)));
+    }
   }
 
   void onShowMoreClicked() {
@@ -456,6 +460,9 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
     showCupertinoModalPopup<void>(
       barrierColor: Colors.transparent,
       context: context,
+      useRootNavigator:
+          betterPlayerController?.betterPlayerConfiguration.useRootNavigator ??
+              false,
       builder: (context) {
         return SafeArea(
           top: false,
@@ -484,6 +491,9 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
     showModalBottomSheet<void>(
       backgroundColor: Colors.transparent,
       context: context,
+      useRootNavigator:
+          betterPlayerController?.betterPlayerConfiguration.useRootNavigator ??
+              false,
       builder: (context) {
         return SafeArea(
           top: false,
@@ -493,7 +503,6 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
               padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
               decoration: BoxDecoration(
                 color: betterPlayerControlsConfiguration.overflowModalColor,
-                /*shape: RoundedRectangleBorder(side: Bor,borderRadius: 24,)*/
                 borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(24.0),
                     topRight: Radius.circular(24.0)),
